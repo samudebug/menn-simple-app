@@ -12,6 +12,7 @@
     "babel-plugin-import": "^1.13.3",
     "babel-plugin-inline-import": "^3.0.0",
     "bootstrap": "^4.6.0",
+    "cors": "^2.8.5",
     "mongoose": "^5.12.5",
     "next": "^10.0.0",
     "react": "17.0.1",
