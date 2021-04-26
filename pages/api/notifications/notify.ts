@@ -27,14 +27,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (req.method === "POST") {
             const data = req.body;
             const tokensToNotify = await getAllTokens(data.except);
-            const message = {
-                notification: {
-                    title: `Notification from ${data.name}`,
-                    body: `Notification from ${data.name}`
-                },
-                tokens: tokensToNotify
+            if (tokensToNotify.length > 0) {
+                const message = {
+                    notification: {
+                        title: `Notification from ${data.name}`,
+                        body: `Notification from ${data.name}`
+                    },
+                    tokens: tokensToNotify
+                }
+                firebase.messaging().sendMulticast(message);
             }
-            firebase.messaging().sendMulticast(message);
+            
             return res.status(200).json({message: "OK"})
         }
         return res.status(404).json({message: 'Route not found'});
