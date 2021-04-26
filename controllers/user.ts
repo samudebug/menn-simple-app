@@ -27,6 +27,10 @@ export const createLinkForUser = async (name: string) => {
                     androidPackageName: "com.mennmobileapp",
                     androidFallbackLink: link
                 },
+                iosInfo: {
+                    iosBundleId: "org.name.mennmobileapp",
+                    iosFallbackLink: link
+                }
             }
     });
     return response.data;
