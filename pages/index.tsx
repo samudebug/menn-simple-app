@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { Button, Container, Form, Toast, Alert, Spinner } from 'react-bootstrap'
 import { useRef, useState } from 'react'
 import axios from 'axios';
@@ -8,16 +9,19 @@ export default function Home() {
   const nameInputRef = useRef(null);
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
     try {
+      const name = nameInputRef!.current!.value
       await axios.post('/api/users/', {
-        name: nameInputRef!.current!.value
+        name: name
       });
       setIsLoading(false);
       setShow(true);
       nameInputRef!.current!.value = "";
+      router.push(`/${name}`)
     } catch (error) {
       console.error(error)
       setIsLoading(false)

@@ -26,7 +26,7 @@ export default function UserPage({userData}) {
         if (isAndroid) {
             setDownloadLink("https://play.google.com/store/apps/details?id=com.instagram.android")
             setShowDownloadLink(true)
-        } else if (isAndroid) {
+        } else if (isIOS) {
             setDownloadLink("https://apps.apple.com/br/app/instagram/id389801252")
             setShowDownloadLink(true)
         }
@@ -51,12 +51,14 @@ export default function UserPage({userData}) {
 
             {success ? (
             <div>
+                <br/>
                 <h4>Use this link to open in the app: <a href={link}>{link}</a></h4>
                 
             </div>
             ) : (<div></div>)}
             {error ? (<h4>An error has ocurred when generating the link</h4> ): (<div></div>)}
-            {showDownloadLink ? (<a href={downloadLink}><Button variant="primary">Download the App</Button></a>) : (<div></div>)}
+            <br/>
+            {showDownloadLink ? (<a href={downloadLink} style={{marginTop: 24}}><Button variant="primary">Download the App</Button></a>) : (<div></div>)}
         </Container>
     );
 }
