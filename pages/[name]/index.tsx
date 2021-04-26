@@ -52,10 +52,11 @@ export default function UserPage({userData}) {
             {success ? (
             <div>
                 <h4>Use this link to open in the app: <a href={link}>{link}</a></h4>
-                {showDownloadLink ? (<a href={downloadLink}><Button variant="primary">Download the App</Button></a>) : (<div></div>)}
+                
             </div>
             ) : (<div></div>)}
             {error ? (<h4>An error has ocurred when generating the link</h4> ): (<div></div>)}
+            {showDownloadLink ? (<a href={downloadLink}><Button variant="primary">Download the App</Button></a>) : (<div></div>)}
         </Container>
     );
 }
