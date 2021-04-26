@@ -27,13 +27,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (req.method === "POST") {
             const data = req.body;
             const tokensToNotify = await getAllTokens(data.except);
+            
             if (tokensToNotify.length > 0) {
                 const message = {
                     notification: {
                         title: `Notification from ${data.name}`,
                         body: `Notification from ${data.name}`
                     },
-                    tokens: tokensToNotify
+                    tokens: tokensToNotify,
+                    android:{
+                        priority:"high"
+                      },
                 }
                 firebase.messaging().sendMulticast(message);
             }
