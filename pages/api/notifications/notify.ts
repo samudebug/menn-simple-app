@@ -40,9 +40,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     android:{
                         priority:"high"
                       },
+                    apns: {
+                        payload: {
+                            aps: {
+                                "contentAvailable": true                            }
+                        }
+                    }
                     
                 }
-                firebase.messaging().sendMulticast(message);
+                firebase.messaging().sendMulticast(message)
             }
             
             return res.status(200).json({message: "OK"})
