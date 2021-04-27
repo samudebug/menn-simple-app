@@ -35,9 +35,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         body: `Notification from ${data.name}`
                     },
                     tokens: tokensToNotify,
+                    priority: "high",
+                    content_available: true,
                     android:{
                         priority:"high"
                       },
+                    
                 }
                 firebase.messaging().sendMulticast(message);
             }
